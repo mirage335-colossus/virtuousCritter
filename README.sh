@@ -65,6 +65,41 @@ _t '
 
 
 '
+_heading1 'Dependencies (Development)'
+_paragraph_begin
+_t 'Install all of these dependencies if possible. In particular, some dependencies may not be bundled with the virtuousCritter installer, usually due to desirability of frequent updates.
+
+*) extendedInterface - Bash/Git command line .
+ *) Download and run 'extIface.exe' from an 'internal' release.
+  *) https://github.com/mirage335-colossus/extendedInterface/releases
+
+*) ubDistBuild (OPTIONAL) - Installs soft dependencies to run extendedInterface more quickly. Downloads ubDist/OS for MSW/WSL.
+ *) Download and run 'ubDistBuild.exe' from an 'internal' release.
+  *) https://github.com/soaringDistributions/ubDistBuild/releases
+ *) Usual commands (As Admin) to download and install ubDist/OS for MSW/WSL.
+  *) _get_vmImg_ubDistBuild-rootfs.bat internal
+  *) _install_vm-wsl2.bat
+  *) _install_vm-wsl2-kernel.bat
+
+*) NVIDIA CUDA Toolkit
+
+*) Python/Pip (external native version NOT part of &#39;ubcp&#39; may be used automatically)
+*) Transformers , Torch , YAML
+
+*) datasets
+
+*) BitsAndBytes Wheel
+
+*) accelerate
+
+*) git lfs install (or _wantGetDep git-lfs)
+
+*) pip install huggingface
+ *) You may already have this installed with transformers or datasets.
+
+
+
+'
 _heading1 'Usage'
 _paragraph_begin
 _o _messagePlain_probe './ubiquitous_bash.sh'
@@ -75,9 +110,36 @@ _t '
 
 '
 _page
-_heading1 'Design'
+_heading1 'Design (Development - MSW)'
 _paragraph_begin
-_t ' '
+_t 'Anchor script (eg. &#39;_virtuousCritter.bat&#39;) may call python script through native python installation .
+
+Anchor script may also, separately, ensure a global InterProcess Communication service is available, such as a CARDinal compatible bus adhering to MetaEngine standards.
+
+Python script may call any ubiquitous_bash function with parameters through a &#39;_bin.bat&#39; anchor script. Autodiscovery and expecting such standard locations as &#39;C:\core\infrastructure\virtuousCritter\_bin.bat&#39; is reasonable.'
+_paragraph_end
+_t '
+
+
+'
+_heading1 'Design (Development - NIX)'
+_paragraph_begin
+_t 'Anchor script (eg. &#39;_virtuousCritter.sh&#39;) will call ubiquitous_bash function.
+
+Any python script must use environment variables and autodiscovery to correctly proceed with either the autodiscovery and standard locations of MSW (native python, NOT Cygwin), OR must properly use the context provided by native NIX if available.
+
+Proper automated management of any needed python venv is expected for NIX.'
+_paragraph_end
+_t '
+
+
+'
+_page
+_heading1 'Design (Deployment)'
+_paragraph_begin
+_t 'All deployment of virtuousCritter is through performant standalone source code, such as through MLC LLM.
+
+Strictly avoid any dependencies not provided by the platform itself or likely to change (eg. AVOID any X11 dev dependencies, AVOID any external QEMU binary, AVOID any non-interactive VM).'
 _paragraph_end
 _t '
 
@@ -86,7 +148,9 @@ _t '
 _page
 _heading1 'Safety'
 _paragraph_begin
-_t ' '
+_t 'Obviously AI is powerful. In automation, there is an unavoidable tradeoff between complexity and predictable behavior. AI itself is inherently unpredictable.
+
+AI for automation must only ever be a component within a rules based system itself trivially simple enough to guarantee predictability.'
 _paragraph_end
 _t '
 
