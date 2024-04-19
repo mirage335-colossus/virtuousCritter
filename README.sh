@@ -60,7 +60,7 @@ See the end of the file for license conditions.
 See license.txt for virtuousCritter license conditions.
 
 
-A program able to call other programs and extensively self-test. Compatible nominally with at least typical Unix-similar and MSW distributions.'
+Development and deployment build framework for both using AI in a development context and deploying AI within an application needing internal automation.'
 _t '
 
 
